@@ -35,6 +35,7 @@ func InitializedApp() *fiber.App {
 func InitializeDB() {
 	configration := config.NewConfiguration()
 	database := config.NewPostgresDatabase(configration)
+	config.NewRunMigration(database)
 
 	cmdApp := cli.NewApp()
 
