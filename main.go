@@ -4,6 +4,7 @@ import (
 	"flag"
 
 	"github.com/krifik/test-drx/app"
+	"github.com/krifik/test-drx/config"
 	_ "github.com/krifik/test-drx/docs"
 	"github.com/krifik/test-drx/exception"
 )
@@ -26,8 +27,9 @@ func main() {
 		app.InitializeDB()
 		return
 	}
+	cfg := config.NewConfiguration()
 	app := app.InitializedApp()
 	// Start App
-	err := app.Listen(":2000")
+	err := app.Listen(":" + cfg.Get("SERVICE_PORT"))
 	exception.PanicIfNeeded(err)
 }
