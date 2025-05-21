@@ -1,0 +1,29 @@
+version: '3.8'
+services: 
+  db:
+    container_name: 'db'
+    image: 'postgres:14.5-alpine'
+    ports: 
+      - '0.0.0.0:5432:5432'
+    environment: 
+      POSTGRES_PASSWORD: test!2#4%
+      POSTGRES_DB: drx
+      POSTGRES_USER: prod
+      PGDATA: /var/lib/postgresql/data
+    networks: 
+      - 'database-net'
+    volumes: 
+      - db-data:/var/lib/postgresql/data
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - 'database-net'
+networks:
+  database-net:
+volumes:
+  db-data:
+

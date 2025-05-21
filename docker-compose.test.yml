@@ -1,0 +1,29 @@
+version: '3.8'
+services: 
+  db-test:
+    container_name: 'db-test'
+    image: 'postgres:14.5-alpine'
+    ports: 
+      - '0.0.0.0:5432:5432'
+    environment: 
+      POSTGRES_PASSWORD: test!2#4%
+      POSTGRES_DB: drx_test
+      POSTGRES_USER: test
+      PGDATA: /var/lib/postgresql/data
+    networks: 
+      - 'database-net'
+    volumes: 
+      - db-data:/var/lib/postgresql/data
+  
+  adminer-test:
+    image: adminer
+    restart: always
+    ports:
+      - 9090:9090
+    networks:
+      - 'database-net'
+networks:
+  database-net:
+volumes:
+  db-data:
+
