@@ -3,8 +3,6 @@ package config
 import (
 	"os"
 
-	"github.com/krifik/test-drx/exception"
-
 	"github.com/joho/godotenv"
 )
 
@@ -20,7 +18,6 @@ func (config *configImpl) Get(key string) string {
 }
 
 func NewConfiguration(filenames ...string) Config {
-	err := godotenv.Load(filenames...)
-	exception.LogIfNeeded(err)
+	godotenv.Load(filenames...)
 	return &configImpl{}
 }
