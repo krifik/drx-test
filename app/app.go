@@ -26,8 +26,6 @@ func InitializedApp() *fiber.App {
 	}))
 	// Setup Routing
 	routes.Route(app, productModule)
-	// Start the server on port 3000
-	log.Fatal(app.Listen(":" + configuration.Get("SERVICE_PORT")))
 	return app
 
 }
