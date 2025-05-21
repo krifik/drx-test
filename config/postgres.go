@@ -2,7 +2,7 @@ package config
 
 import (
 	"context"
-	"log"
+	"fmt"
 	"os"
 	"strconv"
 	"time"
@@ -44,7 +44,7 @@ func NewRunMigration(db *gorm.DB) {
 	for _, entity := range RegisterEntities() {
 		err := db.AutoMigrate(entity.Entity)
 		if err != nil {
-			log.Fatal(err)
+			fmt.Println("Error migrate: ", err)
 		}
 	}
 }
