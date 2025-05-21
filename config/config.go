@@ -21,6 +21,6 @@ func (config *configImpl) Get(key string) string {
 
 func NewConfiguration(filenames ...string) Config {
 	err := godotenv.Load(filenames...)
-	exception.PanicIfNeeded(err)
+	exception.LogIfNeeded(err)
 	return &configImpl{}
 }
